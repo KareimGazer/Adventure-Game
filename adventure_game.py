@@ -25,6 +25,7 @@ print_pause(f"but you are {hero} who will save the day!")
 
 place = "field"
 while True:
+
     if place == "field":
         print_pause("you land in a very large field")
         print_pause("in front of you there is a castle")
@@ -37,11 +38,28 @@ while True:
         elif place == "2":
             place = "hut"
     elif place == "castle":
-        print_pause("you are inside the castle")
+        print_pause("you enter the castle")
+        print_pause(f"then come the {monster}")
+        print_pause("press 1 to attack the monster")
+        print_pause("press 2 to escape")
+        choice = capture_input("choose 1 or 2: ", ["1", "2"])
+        if choice == "1":
+            print_pause(f"{monster} attacks you, you lose!!!")
+            place = None
+        elif choice == "2":
+            print_pause("you manage to escape and return to the field")
+            place = "field"
     elif place == "hut":
         print_pause("you are inside the hut")
-    game_over = capture_input("do you want to continue? y/n: ", ["y", "n"])
+    
+    if place == None:
+        print_pause("Game Over!!")
+        game_over = capture_input("do you want to play again? y/n: ", ["y", "n"])
     if game_over == "n":
-        break
-    elif game_over == "y":
+        place = "field"
         continue
+    elif game_over == "y":
+        break
+
+print_pause("Thank you for playing our game")
+print_pause("we look forward to seeing you play again")
